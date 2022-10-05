@@ -13,20 +13,14 @@ const insertTransactionsUsecase = new InsertTransactionsUsecase(
 
 export class InsertTransactionController {
   async handle(request: Request, response: Response) {
-    try {
-      if (!request.file)
-        return response
-          .status(400)
-          .json({ code: 'INPUT_FILE', message: 'file is required.' });
-      const normalizedTransactions = await normalizeFileUsecase.execute(
-        request.file.filename,
-      );
-      await insertTransactionsUsecase.execute(normalizedTransactions);
-      return response.status(201).json(normalizedTransactions);
-    } catch {
+    if (!request.file)
       return response
-        .status(500)
-        .json({ code: 'INTERNAL', message: 'internal server error.' });
-    }
+        .status(400)
+        .json({ code: 'INPUT_FILE', message: 'file is required.' });
+    const normalizedTransactions = await normalizeFileUsecase.execute(
+      request.file.filename,
+    );
+    await insertTransactionsUsecase.execute(normalizedTransactions);
+    return response.status(201).json(normalizedTransactions);
   }
 }
