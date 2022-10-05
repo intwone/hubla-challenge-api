@@ -9,13 +9,7 @@ const listTransactionsUsecase = new ListTransactionsUsecase(
 
 export class ListTransactionsController {
   async handle(_: Request, response: Response) {
-    try {
-      const transactions = await listTransactionsUsecase.execute();
-      return response.status(200).json(transactions);
-    } catch {
-      return response
-        .status(500)
-        .json({ code: 'INTERNAL', message: 'internal server error.' });
-    }
+    const transactions = await listTransactionsUsecase.execute();
+    return response.status(200).json(transactions);
   }
 }
