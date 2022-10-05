@@ -1,6 +1,9 @@
 import { multerConfig } from '@src/config';
-import { InsertTransactionController } from '@src/modules/transactions/controllers/insert-transaction-controller';
-import { ListTransactionsController } from '@src/modules/transactions/controllers/list-transactions-controller';
+import {
+  InsertTransactionController,
+  ListTransactionsByTypeController,
+  ListTransactionsController,
+} from '@src/modules/transactions/controllers';
 import express from 'express';
 import multer from 'multer';
 
@@ -9,6 +12,7 @@ const upload = multer(multerConfig);
 
 const insertTransactionController = new InsertTransactionController();
 const listTransactionsController = new ListTransactionsController();
+const listTransactionsByTypeController = new ListTransactionsByTypeController();
 
 router.post(
   '/',
@@ -17,5 +21,6 @@ router.post(
 );
 
 router.get('/', listTransactionsController.handle);
+router.get('/:type', listTransactionsByTypeController.handle);
 
 export default router;
