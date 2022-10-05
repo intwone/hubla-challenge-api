@@ -13,14 +13,23 @@ const insertTransactionsUsecase = new InsertTransactionsUsecase(
 
 export class InsertTransactionController {
   async handle(request: Request, response: Response) {
-    if (!request.file)
+    if (!request.file) {
       return response
         .status(400)
         .json({ code: 'INPUT_FILE', message: 'file is required.' });
-    const normalizedTransactions = await normalizeFileUsecase.execute(
+    }
+    const result = await normalizeFileUsecase.execute(
       request.file.filename,
+      request.file.mimetype,
     );
-    await insertTransactionsUsecase.execute(normalizedTransactions);
-    return response.status(201).json(normalizedTransactions);
+
+    if (!result) {
+      return response.status(400).json({
+        code: 'EXTENSION_FILE',
+        message: 'only txt extension is allowed.',
+      });
+    }
+    await insertTransactionsUsecase.execute(result);
+    return response.status(201).json(result);
   }
 }
