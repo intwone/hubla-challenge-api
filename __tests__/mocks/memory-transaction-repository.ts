@@ -11,6 +11,15 @@ export default class MemoryTransactionRepository
     this.transactions = [];
   }
 
+  async listTransactionByType(
+    type: number,
+  ): Promise<Error | TransactionProtocol[] | []> {
+    const transactions = this.transactions.filter(
+      transaction => transaction.type === type,
+    );
+    return transactions;
+  }
+
   async list(): Promise<TransactionProtocol[] | [] | Error> {
     return this.transactions;
   }
