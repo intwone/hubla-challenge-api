@@ -6,8 +6,10 @@ import { Readable } from 'stream';
 import { TransactionProtocol } from '../protocols';
 
 export class NormalizeFileUsecase {
-  async execute(filename: string): Promise<TransactionProtocol[]> {
-    const transactions: TransactionProtocol[] = [];
+  async execute(
+    filename: string,
+    mimeType: string,
+  ): Promise<TransactionProtocol[] | null> {
     const filePath = path.resolve(
       __dirname,
       '..',
@@ -16,7 +18,11 @@ export class NormalizeFileUsecase {
       'temp',
       filename,
     );
-
+    if (mimeType !== 'text/plain') {
+      await fs.promises.unlink(filePath);
+      return null;
+    }
+    const transactions: TransactionProtocol[] = [];
     const buffer = fs.readFileSync(filePath);
     const readableLine = new Readable();
     readableLine.push(buffer);
@@ -24,7 +30,6 @@ export class NormalizeFileUsecase {
     const transactionsLine = readline.createInterface({
       input: readableLine,
     });
-
     for await (const line of transactionsLine) {
       const formattedValue = ValueHelper.formatToBRLValue(
         Number(line.slice(56, 66)),
@@ -38,7 +43,6 @@ export class NormalizeFileUsecase {
       };
       transactions.push(transactionObj);
     }
-
     await fs.promises.unlink(filePath);
     return transactions;
   }
