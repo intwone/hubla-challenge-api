@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import { Readable } from 'stream';
-import { TransactionProtocol } from '../protocols/transaction-protocol';
+import { TransactionProtocol } from '../protocols';
 
 export class NormalizeFileUsecase {
   async execute(filename: string): Promise<TransactionProtocol[]> {

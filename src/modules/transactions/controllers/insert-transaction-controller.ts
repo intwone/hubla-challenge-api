@@ -1,6 +1,8 @@
 import { PrismaTransactionRepository } from '@src/infra/databases/prisma/repositories/prisma-transaction-repository';
-import { InsertTransactionsUsecase } from '@src/modules/transactions/usecases/insert-transactions-usecase';
-import { NormalizeFileUsecase } from '@src/modules/transactions/usecases/normalize-file-usecase';
+import {
+  InsertTransactionsUsecase,
+  NormalizeFileUsecase,
+} from '@src/modules/transactions/usecases';
 import { Request, Response } from 'express';
 
 const normalizeFileUsecase = new NormalizeFileUsecase();

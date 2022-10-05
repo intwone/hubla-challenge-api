@@ -1,5 +1,7 @@
-import { TransactionProtocol } from '../protocols/transaction-protocol';
-import { TransactionRepositoryProtocol } from '../protocols/transaction-repository-protocol';
+import {
+  TransactionProtocol,
+  TransactionRepositoryProtocol,
+} from '../protocols';
 
 export class InsertTransactionsUsecase {
   constructor(
