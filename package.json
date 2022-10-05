@@ -2,9 +2,9 @@
   "name": "finance-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "infra/server/index.ts",
   "scripts": {
-    "start:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/infra/server --inspect --transpile-only --ignore-watch node_modules",
+    "start:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/infra/server --ext ts --inspect --transpile-only --ignore-watch node_modules",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "test": "jest",
     "build": "npx prisma generate && npx ttsc --p ./tsconfig.json",
