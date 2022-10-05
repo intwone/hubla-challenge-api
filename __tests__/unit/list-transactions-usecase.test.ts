@@ -19,7 +19,6 @@ describe('List transactions usecase', () => {
       await insertTransactionsUsecase.execute(transactions);
       const listOfTransactions =
         (await listTransactionsUsecase.execute()) as [];
-
       expect(listOfTransactions.length).toBe(10);
     });
   });

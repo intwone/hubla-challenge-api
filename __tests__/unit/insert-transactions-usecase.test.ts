@@ -10,9 +10,7 @@ describe('Insert transactions usecase', () => {
         memoryTransactionRepository,
       );
       const transactions = createTransactions(10);
-
       await insertTransactionsUsecase.execute(transactions);
-
       expect(memoryTransactionRepository.transactions.length).toBe(10);
     });
   });
