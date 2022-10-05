@@ -5,4 +5,7 @@ export interface TransactionRepositoryProtocol {
     transaction: TransactionProtocol,
   ): Promise<TransactionProtocol | null | Error>;
   list(): Promise<TransactionProtocol[] | [] | Error>;
+  listTransactionByType(
+    type: number,
+  ): Promise<TransactionProtocol[] | [] | Error>;
 }
