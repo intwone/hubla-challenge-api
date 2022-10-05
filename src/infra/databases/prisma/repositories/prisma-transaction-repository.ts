@@ -6,6 +6,21 @@ import prismaClient from '../prisma-client';
 export class PrismaTransactionRepository
   implements TransactionRepositoryProtocol
 {
+  async listTransactionByType(
+    type: number,
+  ): Promise<TransactionProtocol[] | Error | []> {
+    try {
+      const transactions = await prismaClient.transactions.findMany({
+        where: {
+          type,
+        },
+      });
+      return transactions;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+
   async list(): Promise<TransactionProtocol[] | [] | Error> {
     try {
       const transactionsFound = await prismaClient.transactions.findMany();
