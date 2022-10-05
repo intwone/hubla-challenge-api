@@ -1,0 +1,6 @@
+export const TypeEnum = {
+  VENDA_PRODUTOR: 1,
+  VENDA_AFILIADA: 2,
+  COMISSAO_PAGA: 3,
+  COMISSAO_RECEBIDA: 4,
+};
