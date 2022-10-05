@@ -19,18 +19,25 @@ describe('Normalize file usecase', () => {
   });
 
   describe('Success', () => {
-    it('should be able to normalize data', async () => {
+    it('should be able to normalize data when mime type is valid', async () => {
+      const normalizeFileUsecase = new NormalizeFileUsecase();
+      const validMimeType = 'text/plain';
+      const normalizedTransactions = await normalizeFileUsecase.execute(
+        'sales-test.txt',
+        validMimeType,
+      );
+      expect(normalizedTransactions).not.toBeNull();
+    });
+  });
+
+  describe('Fail', () => {
+    it('should not be able to normalize data when mime type is invalid', async () => {
       const normalizeFileUsecase = new NormalizeFileUsecase();
       const normalizedTransactions = await normalizeFileUsecase.execute(
         'sales-test.txt',
+        'invalide/mimetype',
       );
-
-      expect(normalizedTransactions).not.toBeNull();
-      expect(normalizedTransactions[0]).toHaveProperty('type');
-      expect(normalizedTransactions[0]).toHaveProperty('date');
-      expect(normalizedTransactions[0]).toHaveProperty('productName');
-      expect(normalizedTransactions[0]).toHaveProperty('seller');
-      expect(normalizedTransactions[0]).toHaveProperty('value');
+      expect(normalizedTransactions).toBeNull();
     });
   });
 });
