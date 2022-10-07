@@ -11,7 +11,7 @@
 
 ## Como executar o projeto
 
-Primeiramente, renomeie o arquivo `.env.example` para `.env` adicionando as variáveis de ambiente.
+Primeiramente, renomeie o arquivo `.env.example` para `.env`.
 
 Na variável de ambiente `DATABASE_URL` você deverá mudar as credenciais da string de conexão para a sua, por exemplo:
 
