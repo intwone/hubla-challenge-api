@@ -6,19 +6,29 @@
 
 ## Pré requisitos
 
+Para executar o projeto `SEM` o Docker:
+
+- Ter o Node (versao >= 16.15.0) instalado na máquina
 - Ter o banco de dados `Postgres` instalado na máquina
-- Criar um novo database com o nome de sua preferência
+- Criar um novo database com o nome `hubla`
+
+Para executar o projeto `COM` o Docker:
+
+- Ter o Docker instalado na máquina
 
 ## Como executar o projeto
 
 Primeiramente, renomeie o arquivo `.env.example` para `.env`.
 
-Na variável de ambiente `DATABASE_URL` você deverá mudar as credenciais da string de conexão para a sua, por exemplo:
+### Com Docker
 
-```js
-DATABASE_URL =
-  'postgresql://meu_usuario_postgres:minha_senha_postgres@localhost:5432/nome_do_banco?schema=public';
+Na raiz do projeto, execute o seguinte comando:
+
+```bash
+$ docker-compose up
 ```
+
+### Sem Docker
 
 Instalando as dependências:
 
