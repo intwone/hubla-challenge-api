@@ -18,7 +18,7 @@ Para executar o projeto `COM` o Docker:
 
 ## Como executar o projeto
 
-Primeiramente, renomeie o arquivo `.env.example` para `.env`.
+Primeiramente, criar um arquivo `.env` baseado no arquivo `.env.example`.
 
 ### Com Docker
 
@@ -36,7 +36,7 @@ Instalando as dependências:
 $ npm install
 ```
 
-Executando as migrations do banco de dados
+Executando as migrations do banco de dados:
 
 ```bash
 npm run prisma:migrate
@@ -115,8 +115,8 @@ Caso de sucesso:
 Caso de erro não enviando arquivo:
 - status code: 400
 - body: {
-    "code": "INPUT_FILE",
-    "message": "file is required."
+  "code": "INPUT_FILE",
+  "message": "file is required."
 }
 
 Caso de erro enviando arquivo com extensão inválida:
@@ -202,5 +202,9 @@ src
 ├───routes
 └───temp
 ```
+
+## Aprendizados durante o processo
+
+Durante o processo pude aprender mais sobre o Docker e suas particularidades. Até então, não tinha realizado uma dockernização de aplicação do absoluto zero e o teste fez com que eu me forçasse a entender melhor essa ferramenta.
 
 <h4 align="center">Made with 💚 by Cassio Oliveira</h4>
